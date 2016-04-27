@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1461716834 source:/home/user/Blassingame_CSCI2270_FinalProject/final/main.cpp
+	<iostream>
+	"class.h"
+
+1461716073 /home/user/Blassingame_CSCI2270_FinalProject/final/include/class.h
+	<string>
+	<vector>
+
+1461717378 source:/home/user/Blassingame_CSCI2270_FinalProject/final/src/class.cpp
+	"class.h"
+	<iostream>
+
