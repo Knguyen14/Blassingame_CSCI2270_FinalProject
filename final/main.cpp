@@ -1,3 +1,9 @@
+/*
+this is the main function. when you run this program, you should get the menu you see below. 
+enter the number that corresponds with the menu option that you would like to choose.
+each menu option uses a different function that is defined in class.cpp.
+*/
+
 #include <iostream>
 #include "class.h"
 
