@@ -1,3 +1,9 @@
+/*
+this is the class.cpp file where all of the functions are defined.
+i tried to name each function something that would make it obvious what the function does.
+for example, hashSum calculated the hash sum for a movie so it can be inserted into the hash table (using insertMovie).
+*/
+
 #include "class.h"
 #include <iostream>
 
@@ -6,13 +12,13 @@ HashTable::HashTable()
     //ctor
 }
 
-void HashTable::initializeTable() {
+void HashTable::initializeTable() { //initialized the hash table
     for (int i = 0; i < 10; i++) {
         hashTable[i] = NULL;
     }
 }
 
-int HashTable::hashSum(std::string x, int s) {
+int HashTable::hashSum(std::string x, int s) { //calculated the hash sum
     int sum = 0;
     for (int i = 0; i < x.length(); i++) {
         sum = sum + x[i];
@@ -21,7 +27,7 @@ int HashTable::hashSum(std::string x, int s) {
     return sum;
 }
 
-void HashTable::deletehashMovie(std::string name) {
+void HashTable::deletehashMovie(std::string name) { //deletes a movie from the hash table
     int index = hashSum(name, 10);
     if (hashTable[index] != NULL) {
         HashElem *tmp = hashTable[index];
@@ -42,7 +48,7 @@ void HashTable::deletehashMovie(std::string name) {
     }
 }
 
-void HashTable::findhashMovie(std::string name) {
+void HashTable::findhashMovie(std::string name) { //finds a movie in the hash table
     int index = hashSum(name, 10);
     HashElem *tmp = hashTable[index];
     int found = 0;
@@ -60,7 +66,7 @@ void HashTable::findhashMovie(std::string name) {
     }
 }
 
-void HashTable::printTableContents() {
+void HashTable::printTableContents() { //prints the contents of the hash table
     int counter = 0;
     for (int i = 0; i < 10; i++) {
         if (hashTable[i] != NULL) {
@@ -77,7 +83,7 @@ void HashTable::printTableContents() {
     }
 }
 
-void HashTable::insertMovie(std::string name, int year) {
+void HashTable::insertMovie(std::string name, int year) { //inserts a movie into the hash table
     int index = hashSum(name, 10); //what do i use as tablesize?
     HashElem *hashElement = new HashElem(name, year);
     if (hashTable[index] == NULL) {
@@ -97,7 +103,7 @@ void HashTable::insertMovie(std::string name, int year) {
     }
 }
 
-void HashTable::printMovieInventory(){
+void HashTable::printMovieInventory(){ //prints the movies from the tree
     if (root != NULL) {
         MovieNode *node = root;
         if (node -> leftChild != NULL) {
@@ -113,7 +119,7 @@ void HashTable::printMovieInventory(){
     }
 }
 
-void HashTable::printMovieInventory(MovieNode *node) {
+void HashTable::printMovieInventory(MovieNode *node) { //prints the movie inventory; used internally
     if (node -> leftChild != NULL) {
         printMovieInventory(node -> leftChild);
     }
@@ -123,7 +129,7 @@ void HashTable::printMovieInventory(MovieNode *node) {
     }
 }
 
-void HashTable::addMovieNode(int ranking, std::string title, int releaseYear, int quantity) {
+void HashTable::addMovieNode(int ranking, std::string title, int releaseYear, int quantity) { //adds movie to tree
     MovieNode *tmp = root;
     MovieNode *parent = NULL;
     MovieNode *node = new MovieNode(ranking, title, releaseYear, quantity);
@@ -152,7 +158,7 @@ void HashTable::addMovieNode(int ranking, std::string title, int releaseYear, in
     }
 }
 
-void HashTable::findMovie(std::string title) {
+void HashTable::findMovie(std::string title) { //finds movie in tree
     int findMovie_Counter = 0;
     MovieNode *node = root;
     while (node != NULL) {
@@ -178,14 +184,14 @@ void HashTable::findMovie(std::string title) {
     }
 }
 
-MovieNode *HashTable::treeMin(MovieNode *node) {
+MovieNode *HashTable::treeMin(MovieNode *node) { //finds the minimum of the tree
     while (node -> leftChild != NULL) {
         node = node -> leftChild;
     }
     return node;
 }
 
-void HashTable::deleteMovie(std::string title) {
+void HashTable::deleteMovie(std::string title) { //deletes a movie from the tree
     int deleteMovie_Counter = 0;
     MovieNode *node = root;
     while (node != NULL) {
@@ -296,7 +302,7 @@ MovieNode *HashTable::search(std::string title) {
 
 }
 
-void HashTable::rentMovie(std::string title) {
+void HashTable::rentMovie(std::string title) { //rent a movie; decreases movie quantity by one
     int rentMovie_Counter = 0;
     MovieNode *node = root;
     while (node != NULL) {
@@ -334,7 +340,7 @@ void HashTable::rentMovie(std::string title) {
     }
 }
 
-void HashTable::countMovies() {
+void HashTable::countMovies() { //counts the number of movies in the tree
     if (root != NULL) {
         MovieNode *node = root;
         movieCounter = 0;
@@ -352,7 +358,7 @@ void HashTable::countMovies() {
     }
 }
 
-void HashTable::countMovies(MovieNode *node) {
+void HashTable::countMovies(MovieNode *node) { //counts movies; used internally
     if (node -> leftChild != NULL) {
 		countMovies(node -> leftChild);
 	}
@@ -362,7 +368,7 @@ void HashTable::countMovies(MovieNode *node) {
 	movieCounter++;    //delete node
 }
 
-void HashTable::postOrder() {
+void HashTable::postOrder() { //post-order traversal to delete movies
     if (root != NULL) {
         MovieNode *node = root;
         if (node -> leftChild != NULL) {
@@ -379,7 +385,7 @@ void HashTable::postOrder() {
     }
 }
 
-void HashTable::postOrder(MovieNode *node) {
+void HashTable::postOrder(MovieNode *node) { //post-order to delete movies
     if (node -> leftChild != NULL) {
 		postOrder(node -> leftChild);
 	}
